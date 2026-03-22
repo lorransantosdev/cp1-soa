@@ -50,4 +50,13 @@ public class ConvocationService {
         return convocationRepository.findAll();
     }
 
+    @WebMethod
+    public String createPlayer(String name, String position) {
+
+        Player player = new Player(null, name, position);
+
+        playerRepository.save(player);
+
+        return "Player created successfully!";
+    }
 }
