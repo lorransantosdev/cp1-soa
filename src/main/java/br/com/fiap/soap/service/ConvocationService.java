@@ -49,4 +49,5 @@ public class ConvocationService {
     public List<Convocation> listConvocations() {
         return convocationRepository.findAll();
     }
+
 }
