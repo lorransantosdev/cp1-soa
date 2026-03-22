@@ -3,4 +3,3 @@ CREATE TABLE players (
     name VARCHAR(100),
     position VARCHAR(50)
 );
-
