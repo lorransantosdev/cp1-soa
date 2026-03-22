@@ -10,6 +10,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PlayerRepository {
+    public void save(Player player) {
+
+        String sql = "INSERT INTO players (name, position) VALUES (?, ?)";
+
+        try (Connection conn = ConnectionFactoryConfig.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+
+            ps.setString(1, player.getName());
+            ps.setString(2, player.getPosition());
+
+            ps.executeUpdate();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
     public List<Player> findAll() {
         List<Player> players = new ArrayList<>();
 
