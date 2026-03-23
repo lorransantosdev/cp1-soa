@@ -6,10 +6,11 @@ public class FlywayConfig {
     public static void migrate() {
         Flyway flyway = Flyway.configure()
                 .dataSource(
-                        "jdbc:postgresql://localhost:5432/convocation",
+                        "jdbc:postgresql://localhost:5432/cd",
                         "postgres",
-                        "postgres"
+                        "db-convocation"
                 )
+                .locations("classpath:db.migration")
                 .load();
 
         flyway.migrate();

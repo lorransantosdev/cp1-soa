@@ -105,15 +105,17 @@ http://localhost:8080/convocation?wsdl
 ## Criar jogador
 
 ```bash id="curl-real-1"
-curl -X POST http://localhost:8080/convocation \
--H "Content-Type: text/xml;charset=UTF-8" \
--d '
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+curl --request POST \
+  --url http://localhost:8080/convocation \
+  --header 'Content-Type: text/xml;charset=UTF-8' \
+  --data '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:ser="http://service.soap.fiap.com.br/">
+   <soapenv:Header/>
    <soapenv:Body>
-      <createPlayer>
+      <ser:createPlayer>
          <name>Neymar</name>
          <position>Forward</position>
-      </createPlayer>
+      </ser:createPlayer>
    </soapenv:Body>
 </soapenv:Envelope>'
 ```
@@ -123,12 +125,14 @@ curl -X POST http://localhost:8080/convocation \
 ## Listar jogadores
 
 ```bash id="curl-real-2"
-curl -X POST http://localhost:8080/convocation \
--H "Content-Type: text/xml;charset=UTF-8" \
--d '
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+curl --request POST \
+  --url http://localhost:8080/convocation \
+  --header 'Content-Type: text/xml;charset=UTF-8' \
+  --data '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:ser="http://service.soap.fiap.com.br/">
+   <soapenv:Header/>
    <soapenv:Body>
-      <listPlayers/>
+      <ser:listPlayers/>
    </soapenv:Body>
 </soapenv:Envelope>'
 ```
@@ -138,15 +142,17 @@ curl -X POST http://localhost:8080/convocation \
 ## Convocar jogador
 
 ```bash id="curl-real-3"
-curl -X POST http://localhost:8080/convocation \
--H "Content-Type: text/xml;charset=UTF-8" \
--d '
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+curl --request POST \
+  --url http://localhost:8080/convocation \
+  --header 'Content-Type: text/xml;charset=UTF-8' \
+  --data '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:ser="http://service.soap.fiap.com.br/">
+   <soapenv:Header/>
    <soapenv:Body>
-      <callPlayer>
+      <ser:callPlayer>
          <playerId>1</playerId>
-         <requestedBy>Lorran</requestedBy>
-      </callPlayer>
+         <requestedBy>Neymar</requestedBy>
+      </ser:callPlayer>
    </soapenv:Body>
 </soapenv:Envelope>'
 ```
