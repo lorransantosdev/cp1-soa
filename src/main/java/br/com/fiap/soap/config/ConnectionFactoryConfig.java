@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 
 public class ConnectionFactoryConfig {
 
-    private static final String URL = "jdbc:postgresql://localhost:5432/convocation";
+    private static final String URL = "jdbc:postgresql://localhost:5432/cd";
     private static final String USER = "postgres";
-    private static final String PASSWORD = "postgres";
+    private static final String PASSWORD = "db-convocation";
 
     public static Connection getConnection() {
         try {
