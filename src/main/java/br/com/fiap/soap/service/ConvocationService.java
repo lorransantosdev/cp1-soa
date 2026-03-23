@@ -4,9 +4,12 @@ import br.com.fiap.soap.model.Convocation;
 import br.com.fiap.soap.model.Player;
 import br.com.fiap.soap.repository.ConvocationRepository;
 import br.com.fiap.soap.repository.PlayerRepository;
+import org.flywaydb.core.internal.util.CollectionsUtils;
 
 import javax.jws.WebMethod;
+import javax.jws.WebParam;
 import javax.jws.WebService;
+import java.util.Collections;
 import java.util.List;
 
 @WebService
@@ -25,17 +28,24 @@ public class ConvocationService {
     }
 
     @WebMethod
-    public String callPlayer(Long playerId, String requestedBy) {
+    public String callPlayer(
+            @WebParam(name = "playerId") String playerId,
+            @WebParam(name = "requestedBy")String requestedBy) {
 
-        Player player = playerRepository.findById(playerId);
+        if (playerId == null) {
+            return "Player ID cannot be null";
+        }
+        Long playerIdLong = Long.parseLong(playerId);
+
+        Player player = playerRepository.findById(playerIdLong);
 
         if (player == null) {
-            return "Player not found";
+            return "Player with ID " + playerIdLong + " not found";
         }
 
         Convocation c = new Convocation(
                 null,
-                playerId,
+                playerIdLong,
                 requestedBy,
                 "CALLED"
         );
@@ -51,7 +61,13 @@ public class ConvocationService {
     }
 
     @WebMethod
-    public String createPlayer(String name, String position) {
+    public String createPlayer(
+            @WebParam(name = "name") String name,
+            @WebParam(name = "position") String position) {
+
+        if (name == null || position == null ) {
+            return "Player ID cannot be null";
+        }
 
         Player player = new Player(null, name, position);
 
