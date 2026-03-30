@@ -162,12 +162,15 @@ curl --request POST \
 ## Listar convocações
 
 ```bash id="curl-real-4"
-curl -X POST http://localhost:8080/convocation \
--H "Content-Type: text/xml;charset=UTF-8" \
--d '
-<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/">
+curl --request POST \
+  --url http://localhost:8080/convocation \
+  --header 'Content-Type: text/xml;charset=UTF-8' \
+  --data '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:ser="http://service.soap.fiap.com.br/">
+   <soapenv:Header/>
    <soapenv:Body>
-      <listConvocations/>
+   <ser:listConvocations>
+     </ser:listConvocations>
    </soapenv:Body>
 </soapenv:Envelope>'
 ```
